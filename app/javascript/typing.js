@@ -22,6 +22,14 @@ function set_text () {
   XHR.open("GET", "/typings/new", true);
   XHR.responseType = "json";
   XHR.send();
+  XHR.onload = () => {
+    const questionEnglishWord = document.getElementById('question_english_word');
+    const questionJapaneseWord = document.getElementById('question_japanese_word');
+    const newEnglishWord = XHR.response.english_word;
+    const newJapaneseWord = XHR.response.japanese_word;
+    questionEnglishWord.innerHTML = newEnglishWord;
+    questionJapaneseWord.innerHTML = newJapaneseWord;
+  }
 }
 
 function key_up (e) {
