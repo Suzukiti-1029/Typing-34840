@@ -1,4 +1,5 @@
 function key_down (e) {
+  e.preventDefault();
   const inputWord = document.getElementById('input_word');
   const questionEnglishWord = document.getElementById('question_english_word');
   if (e.code == 'Backspace' || e.code == 'Delete') {
@@ -15,9 +16,16 @@ function key_down (e) {
 }
 
 function set_text () {
+  const inputWord = document.getElementById('input_word');
+  inputWord.innerHTML = ''
+  const XHR = new XMLHttpRequest();
+  XHR.open("GET", "/typings/new", true);
+  XHR.responseType = "json";
+  XHR.send();
 }
 
 function key_up (e) {
+  e.preventDefault();
 }
 
 window.addEventListener('keydown', key_down);
