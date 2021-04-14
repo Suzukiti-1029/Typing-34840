@@ -1,7 +1,7 @@
 let count = 1
 let score = 0
 let index = 1
-let tmr = 60
+let tmr = 1
 
 function key_down (e) {
   e.preventDefault();
@@ -26,7 +26,8 @@ function key_down (e) {
 function key_down_space_escape_only (e) {
   e.preventDefault();
   if (e.code == 'Space' || e.code == 'Escape') {
-  index = 2
+    index = 2
+    tmr = 3
   }
 }
 
@@ -37,7 +38,10 @@ function set_text () {
   inputWord.innerHTML = ''
   questionCount.innerHTML = count
   yourScore.innerHTML = score
+  set_question()
+}
 
+function set_question () {
   const XHR = new XMLHttpRequest();
   XHR.open("GET", "/typings/new", true);
   XHR.responseType = "json";
@@ -61,19 +65,43 @@ function key_up (e) {
 
 function main () {
   setInterval(() => {
-  if (index == 1) {
-    window.addEventListener('keydown', key_down_space_escape_only);
-  } else if (index == 2) {
-    tmr -= 0.1;
     const yourRemainingTime = document.getElementById('your_remaining_time');
-    if (tmr <= 0) {
-      tmr = 0
-      clearInterval(this);
+    if (index == 1) {
+      const questionSpace = document.getElementById('question_space');
+      questionSpace.innerHTML = 'Escape or Space => Start'
+      window.addEventListener('keydown', key_down_space_escape_only);
+    } else if (index == 2) {
+      tmr -= 0.1;
+      yourRemainingTime.innerHTML = tmr.toFixed(0);
+      const questionSpace = document.getElementById('question_space');
+      questionSpace.innerHTML = `
+        <div>
+          <p id="question_number"></p>
+          <h1 id="question_english_word"></h1>
+          <h3 id="question_japanese_word"></h3>
+        </div>
+        <div>
+          <p>↓Your word↓</p>
+          <h1 id="input_word"></h1>
+        </div>
+      `
+      if (tmr <= 0) {
+        index = 3;
+        tmr = 60
+        set_question()
+      }
+    } else if (index == 3) {
+      tmr -= 0.1;
+      yourRemainingTime.innerHTML = tmr.toFixed(1);
+      window.addEventListener('keydown', key_down);
+      window.addEventListener('keyup', key_up);
+      if (tmr <= 0) {
+        index = 4;
+      }
+    } else if (index == 4) {
+      const questionSpace = document.getElementById('question_space');
+      questionSpace.innerHTML = 'Finish!'
     }
-    yourRemainingTime.innerHTML = tmr.toFixed(1);
-    window.addEventListener('keydown', key_down);
-    window.addEventListener('keyup', key_up);
-  }
   }, 100);
 }
 
