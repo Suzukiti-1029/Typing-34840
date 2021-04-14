@@ -1,3 +1,4 @@
+let count = 1
 function key_down (e) {
   e.preventDefault();
   const questionEnglishWord = document.getElementById('question_english_word');
@@ -17,8 +18,11 @@ function key_down (e) {
 }
 
 function set_text () {
+  const questionCount = document.getElementById('question_count');
   const inputWord = document.getElementById('input_word');
+  count += 1
   inputWord.innerHTML = ''
+  questionCount.innerHTML = count
 
   const XHR = new XMLHttpRequest();
   XHR.open("GET", "/typings/new", true);
