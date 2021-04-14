@@ -19,6 +19,8 @@ function key_down (e) {
       score += questionEnglishWord.innerHTML.length * 10
       count += 1
       set_text()
+    } else {
+      score -= 20
     }
   }
 }
