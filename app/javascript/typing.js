@@ -21,6 +21,8 @@ function key_down (e) {
       set_text()
     } else {
       score -= 20
+      const yourScore = document.getElementById('your_score');
+      yourScore.innerHTML = score
     }
   }
 }
