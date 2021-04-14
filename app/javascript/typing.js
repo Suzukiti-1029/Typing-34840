@@ -70,14 +70,13 @@ function key_up (e) {
 function main () {
   setInterval(() => {
     const yourRemainingTime = document.getElementById('your_remaining_time');
+    const questionSpace = document.getElementById('question_space');
     if (index == 1) {
-      const questionSpace = document.getElementById('question_space');
       questionSpace.innerHTML = 'Escape or Space => Start'
       window.addEventListener('keydown', key_down_space_escape_only);
     } else if (index == 2) {
       tmr -= 0.1;
       yourRemainingTime.innerHTML = tmr.toFixed(0);
-      const questionSpace = document.getElementById('question_space');
       questionSpace.innerHTML = `
         <div>
           <p id="question_number"></p>
@@ -100,11 +99,14 @@ function main () {
       window.addEventListener('keydown', key_down);
       window.addEventListener('keyup', key_up);
       if (tmr <= 0) {
+        tmr = 0;
         index = 4;
       }
     } else if (index == 4) {
-      const questionSpace = document.getElementById('question_space');
-      questionSpace.innerHTML = 'Finish!\nEscape or Space => Retry'
+      questionSpace.innerHTML = `
+        Finish!
+        Escape or Space => Retry
+      `
       window.addEventListener('keydown', key_down_space_escape_only);
     }
   }, 100);
