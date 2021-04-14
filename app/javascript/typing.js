@@ -1,5 +1,6 @@
 let count = 1
 let score = 0
+let index = 1
 let tmr = 60
 
 function key_down (e) {
@@ -19,6 +20,13 @@ function key_down (e) {
       count += 1
       set_text()
     }
+  }
+}
+
+function key_down_space_escape_only (e) {
+  e.preventDefault();
+  if (e.code == 'Space' || e.code == 'Escape') {
+  index = 2
   }
 }
 
@@ -53,6 +61,9 @@ function key_up (e) {
 
 function main () {
   setInterval(() => {
+  if (index == 1) {
+    window.addEventListener('keydown', key_down_space_escape_only);
+  } else if (index == 2) {
     tmr -= 0.1;
     const yourRemainingTime = document.getElementById('your_remaining_time');
     if (tmr <= 0) {
@@ -60,9 +71,10 @@ function main () {
       clearInterval(this);
     }
     yourRemainingTime.innerHTML = tmr.toFixed(1);
+    window.addEventListener('keydown', key_down);
+    window.addEventListener('keyup', key_up);
+  }
   }, 100);
-  window.addEventListener('keydown', key_down);
-  window.addEventListener('keyup', key_up);
 }
 
 window.addEventListener('load', main);
