@@ -104,7 +104,8 @@ function main () {
       }
     } else if (index == 4) {
       const questionSpace = document.getElementById('question_space');
-      questionSpace.innerHTML = 'Finish!'
+      questionSpace.innerHTML = 'Finish!\nEscape or Space => Retry'
+      window.addEventListener('keydown', key_down_space_escape_only);
     }
   }, 100);
 }
