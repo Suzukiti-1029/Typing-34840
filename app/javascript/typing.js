@@ -1,5 +1,6 @@
 let count = 1
 let score = 0
+let tmr = 60
 
 function key_down (e) {
   e.preventDefault();
@@ -50,5 +51,14 @@ function key_up (e) {
   e.preventDefault();
 }
 
-window.addEventListener('keydown', key_down);
-window.addEventListener('keyup', key_up);
+function main () {
+  setInterval(() => {
+    tmr -= 0.1;
+    const yourRemainingTime = document.getElementById('your_remaining_time');
+    yourRemainingTime.innerHTML = tmr.toFixed(1);
+  }, 100);
+  window.addEventListener('keydown', key_down);
+  window.addEventListener('keyup', key_up);
+}
+
+window.addEventListener('load', main);
