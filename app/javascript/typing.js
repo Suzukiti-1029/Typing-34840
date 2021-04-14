@@ -1,4 +1,6 @@
 let count = 1
+let score = 0
+
 function key_down (e) {
   e.preventDefault();
   const questionEnglishWord = document.getElementById('question_english_word');
@@ -12,6 +14,8 @@ function key_down (e) {
   }
   if (e.code == 'Enter') {
     if (questionEnglishWord.innerHTML == inputWord.innerHTML) {
+      score += questionEnglishWord.innerHTML.length * 10
+      count += 1
       set_text()
     }
   }
@@ -20,9 +24,10 @@ function key_down (e) {
 function set_text () {
   const questionCount = document.getElementById('question_count');
   const inputWord = document.getElementById('input_word');
-  count += 1
+  const yourScore = document.getElementById('your_score');
   inputWord.innerHTML = ''
   questionCount.innerHTML = count
+  yourScore.innerHTML = score
 
   const XHR = new XMLHttpRequest();
   XHR.open("GET", "/typings/new", true);
