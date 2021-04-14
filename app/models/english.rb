@@ -81,7 +81,7 @@ class English < ActiveHash::Base
     { id: 79, name: 'surround' },
     { id: 80, name: 'suit' },
     { id: 81, name: 'estimate' },
-    { id: 82, name: 'aim(aim at A)' },
+    { id: 82, name: 'aim' },
     { id: 83, name: 'earn' },
     { id: 84, name: 'decline' },
     { id: 85, name: 'afford' },
