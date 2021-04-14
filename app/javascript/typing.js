@@ -55,6 +55,10 @@ function main () {
   setInterval(() => {
     tmr -= 0.1;
     const yourRemainingTime = document.getElementById('your_remaining_time');
+    if (tmr <= 0) {
+      tmr = 0
+      clearInterval(this);
+    }
     yourRemainingTime.innerHTML = tmr.toFixed(1);
   }, 100);
   window.addEventListener('keydown', key_down);
