@@ -1,3 +1,78 @@
 // Place all the styles related to the typings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+main {
+  background-color: skyblue;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main_content {
+  background-color: #DEF;
+  height: 100vh;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 48px;
+}
+
+.main_title {
+  background-color: white;
+}
+
+.information {
+  background-color: #DEF;
+  font-size: 24px;
+  border-bottom: 1px solid white;
+}
+
+.navigation {
+  font-size: 24px;
+}
+
+.count_number, .question_space, .how_to_play {
+  background-color: #DEF;
+  text-align: center;
+}
+
+.count_number {
+  font-size: 24px;
+  color:#4C0;
+}
+
+.question {
+  height: 132px;
+  border: 3px solid white;
+}
+
+.question_number {
+  font-size: 16px;
+}
+.question_english_word {
+  font-size: 48px;
+}
+.question_japanese_word {
+  font-size: 24px;
+}
+
+.input_helper {
+  font-size: 24px;
+}
+.input_word {
+  height: 72px;
+ font-size: 48px;
+}
+
+.result {
+  font-size: 36px;
+}
+
+.how_to_play {
+  color: #ABC;
+  font-size: 24px;
+  background-color: white;
+  width: 300px;
+  margin: auto auto;
+}
