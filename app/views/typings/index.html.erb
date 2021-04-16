@@ -1,6 +1,13 @@
 <main>
   <div class="main_content">
     <p class="title main_title">タイピングゲーム</p>
+    <% if user_signed_in? %>
+      <%= link_to 'マイページ', '#' %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to 'ユーザー登録', new_user_registration_path %>
+    <% end %>
     <div class="information">
       <p>残り時間: <span id="your_remaining_time">60</span></p>
       <p>スコア: <span id="your_score">0</span></p>

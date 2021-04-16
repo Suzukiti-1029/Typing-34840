@@ -115,4 +115,6 @@ function main () {
   }, 100);
 }
 
-window.addEventListener('load', main);
+if (location.pathname == '/') {
+  window.addEventListener('load', main);
+}
