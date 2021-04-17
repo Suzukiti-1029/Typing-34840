@@ -1,4 +1,4 @@
-class English < ActiveHash::Base
+class QuestionData < ActiveHash::Base
   self.data = [
     { id: 1, english: 'follow', japanese: '①～(の後)に続く②<指示・方針など>に従う' },
     { id: 2, english: 'consider', japanese: '～を考慮する' },
