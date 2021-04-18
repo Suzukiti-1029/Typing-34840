@@ -15,6 +15,13 @@ function key_down_space_escape_only (e) {
   }
 }
 
+shortcut.add("Ctrl+H",() => {
+  if (index == 3 && coff) {
+    const inputWord = document.getElementById('input_word');
+    inputWord.innerHTML = inputWord.innerHTML.slice(0, -1)
+  }
+});
+
 function key_down (e) {
   if (index == 3) {
     e.preventDefault();
@@ -22,11 +29,9 @@ function key_down (e) {
     const inputWord = document.getElementById('input_word');
     if (e.code == 'Backspace' || e.code == 'Delete') {
       inputWord.innerHTML = inputWord.innerHTML.slice(0, -1)
-      coff = true
     }
     if (e.code.includes('Key') || e.code == 'Space') {
       inputWord.innerHTML += e.key
-      coff = true
     }
     if (e.code == 'Enter' && coff) {
       if (questionEnglishWord.innerHTML == inputWord.innerHTML) {
@@ -77,6 +82,7 @@ function set_question () {
 }
 
 function key_up (e) {
+  coff = true
 }
 
 function main () {
