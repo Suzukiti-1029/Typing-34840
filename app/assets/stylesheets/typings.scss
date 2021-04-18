@@ -1,39 +1,89 @@
 // Place all the styles related to the typings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-main {
-  background-color: skyblue;
+body {
   height: 100vh;
   width: 100vw;
+  background-color: green;
 }
 
-.main_content {
-  background-color: #DEF;
-  height: 100vh;
-  width: 600px;
-  margin: 0 auto;
-}
-
-.title {
-  font-size: 48px;
+header {
+  height: 10vh;
+  background-color: skyblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main_title {
+  font-size: 48px;
+  padding: 0 20px;
+}
+
+.user_controller {
+  color: blue;
+  font-size: 24px;
+  background-color: lightgreen;
+  padding: 10px;
+  margin: 0 20px;
+  border: 2px solid red;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+main {
+  background-color: yellow;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+}
+
+.left_contents {
+  height: 100%;
+  width: calc((100vw - 600px)/2);
+  background-color: green;
+}
+
+.your_best_title, .ranking_title {
+  text-align: center;
+}
+
+.your_best {
+  width: 70%;
+  height: 200px;
+  background-color: violet;
+  margin: 0 auto;
+}
+
+.main_contents {
+  height: 100%;
+  width: 600px;
   background-color: white;
 }
 
-.information {
-  background-color: #DEF;
+.game_information {
   font-size: 24px;
-  border-bottom: 1px solid white;
+  width: 100%;
+  background-color: #DEF;
+}
+
+.question_space {
+  height: 210px;
+  width: 90%;
+  border: 3px double green;
+  background-color: #DEF;
+  margin: 0 auto;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.question_first_title {
+  font-size: 36px;
+  text-align: center;
 }
 
 .navigation {
   font-size: 24px;
-}
-
-.count_number, .question_space, .how_to_play {
-  background-color: #DEF;
   text-align: center;
 }
 
@@ -42,27 +92,38 @@ main {
   color:#4C0;
 }
 
-.question {
-  height: 132px;
-  border: 3px solid white;
-}
-
 .question_number {
   font-size: 16px;
 }
+
 .question_english_word {
   font-size: 48px;
 }
+
 .question_japanese_word {
   font-size: 24px;
+}
+
+.input_form {
+  height: 170px;
+  text-align: center;
 }
 
 .input_helper {
   font-size: 24px;
 }
+
 .input_word {
   height: 72px;
- font-size: 48px;
+  width: 80%;
+  border-bottom: 5px solid red;
+  margin: 0 auto;
+  font-size: 48px;
+}
+
+.judgement {
+  font-size: 36px;
+  height: 58px;
 }
 
 .result {
@@ -70,9 +131,22 @@ main {
 }
 
 .how_to_play {
-  color: #ABC;
   font-size: 24px;
-  background-color: white;
   width: 300px;
-  margin: auto auto;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #DEF;
+}
+
+.right_contents {
+  height: 100%;
+  width: calc((100vw - 600px)/2);
+  background-color: red;
+}
+
+.ranking {
+  width: 70%;
+  height: 200px;
+  background-color: #DEF;
+  margin: 0 auto;
 }

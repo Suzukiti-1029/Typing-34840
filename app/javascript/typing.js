@@ -71,24 +71,24 @@ function main () {
   setInterval(() => {
     const yourRemainingTime = document.getElementById('your_remaining_time');
     const questionSpace = document.getElementById('question_space');
+    const inputForm = document.getElementById('input_form');
     if (index == 1) {
       window.addEventListener('keydown', key_down_space_escape_only);
     } else if (index == 2) {
       tmr -= 0.1;
       yourRemainingTime.innerHTML = tmr.toFixed(0);
       questionSpace.innerHTML = `
-        <div class="count_number">
-          <p>Question <span id="question_count">1</span></p>
-        </div>
-        <div class="question">
-          <p class="question_number" id="question_number"></p>
-          <p class="question_english_word" id="question_english_word"></p>
-          <p class="question_japanese_word" id="question_japanese_word"></p>
-        </div>
-        <div>
+        <p class="count_number">
+          Question <span id="question_count">1</span>
+        </p>
+        <p class="question_number" id="question_number">34</p>
+        <p class="question_english_word" id="question_english_word">English</p>
+        <p class="question_japanese_word" id="question_japanese_word">日本語</p>
+      `
+      inputForm.innerHTML = `
           <p class="input_helper">↓Your word↓</p>
           <p class="input_word" id="input_word"></p>
-        </div>
+          <p class="judgement" id="judgement"></p>
       `
       if (tmr <= 0) {
         index = 3;
@@ -106,10 +106,10 @@ function main () {
       }
     } else if (index == 4) {
       questionSpace.innerHTML = `
-        <p class='result'>終了!</p>
-        <p class='result'>あなたのスコアは${score}点でした!</p>
+        <p class='result'>終了!</br >あなたのスコアは</br >${score}点でした!</p>
         <p class='navigation'>Escape or Space => もう一度プレイする</p>
       `
+      inputForm.innerHTML = ``
       window.addEventListener('keydown', key_down_space_escape_only);
     }
   }, 100);

@@ -1,25 +1,49 @@
-<main>
-  <div class="main_content">
-    <p class="title main_title">タイピングゲーム</p>
-    <% if user_signed_in? %>
-      <%= link_to 'マイページ', '#' %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'ログイン', new_user_session_path %>
-      <%= link_to 'ユーザー登録', new_user_registration_path %>
-    <% end %>
-    <div class="information">
-      <p>残り時間: <span id="your_remaining_time">60</span></p>
-      <p>スコア: <span id="your_score">0</span></p>
+<body>
+  <header>
+    <p class="main_title">タイピングゲーム</p>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to 'マイページ', '#', class: 'user_controller' %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'user_controller' %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path, class: 'user_controller' %>
+        <%= link_to 'ユーザー登録', new_user_registration_path, class: 'user_controller' %>
+      <% end %>
     </div>
-    <div class="question_space" id="question_space">
-      <p class="title">タイピングゲーム</p>
-      <p class='navigation'>Escape or Space => スタート</p>
+  </header>
+  <main>
+    <div class="left_contents">
+      <% if user_signed_in? %>
+        <p class="your_best_title">
+          <%= current_user.name %>さんの自己ベスト
+        </p>
+        <div class="your_best">
+        </div>
+      <% end %>
     </div>
-    <div class="how_to_play">
-      <p>単語を入力してください</p>
-      <p>OK→Enter/Return</p>
-      <p>修正→Delete/Backspace</p>
+    <div class="main_contents">
+      <div class="game_information">
+        <p>残り時間: <span id="your_remaining_time">60</span></p>
+        <p>スコア: <span id="your_score">0</span></p>
+      </div>
+      <div class="question_space" id="question_space">
+        <p class="question_first_title">タイピングゲーム</p>
+        <p class='navigation'>Escape or Space => スタート</p>
+      </div>
+      <div class="input_form" id="input_form">
+      </div>
+      <div class="how_to_play">
+        <p>単語を入力してください</p>
+        <p>OK→Enter/Return</p>
+        <p>修正→Delete/Backspace</p>
+      </div>
     </div>
-  <div>
-</main>
+    <div class="right_contents">
+      <p class="ranking_title">
+        ランキング一覧
+      </p>
+      <div class="ranking">
+      </div>
+    </div>
+  </main>
+</body>
