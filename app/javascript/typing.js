@@ -2,6 +2,7 @@ let count = 1
 let score = 0
 let index = 1
 let tmr = 1
+let sum_length = 0
 
 function key_down (e) {
   e.preventDefault();
@@ -17,6 +18,7 @@ function key_down (e) {
   if (e.code == 'Enter') {
     if (questionEnglishWord.innerHTML == inputWord.innerHTML) {
       score += questionEnglishWord.innerHTML.length * 10
+      sum_length += questionEnglishWord.innerHTML.length
       count += 1
       set_text()
     } else {
@@ -31,7 +33,7 @@ function key_down_space_escape_only (e) {
   e.preventDefault();
   if (e.code == 'Space' || e.code == 'Escape') {
     index = 2
-    tmr = 3
+    tmr = 3.5
   }
 }
 
@@ -86,9 +88,9 @@ function main () {
         <p class="question_japanese_word" id="question_japanese_word">日本語</p>
       `
       inputForm.innerHTML = `
-          <p class="input_helper">↓Your word↓</p>
-          <p class="input_word" id="input_word"></p>
-          <p class="judgement" id="judgement"></p>
+        <p class="input_helper">↓Your word↓</p>
+        <p class="input_word" id="input_word"></p>
+        <p class="judgement" id="judgement"></p>
       `
       if (tmr <= 0) {
         index = 3;
@@ -109,7 +111,13 @@ function main () {
         <p class='result'>終了!</br >あなたのスコアは</br >${score}点でした!</p>
         <p class='navigation'>Escape or Space => もう一度プレイする</p>
       `
-      inputForm.innerHTML = ``
+      inputForm.innerHTML = `
+        <p class='result_detail'>
+          スコア：${score}点</br >
+          時間：60秒</br >
+          正確な入力文字数：${sum_length}文字</br >
+        </p>
+      `
       window.addEventListener('keydown', key_down_space_escape_only);
     }
   }, 100);
