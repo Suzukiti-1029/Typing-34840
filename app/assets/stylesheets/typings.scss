@@ -113,12 +113,21 @@ main {
   font-size: 24px;
 }
 
-.input_word {
+.input_word_area {
   height: 72px;
   width: 80%;
   border-bottom: 5px solid red;
   margin: 0 auto;
+}
+
+.input_word {
   font-size: 48px;
+}
+
+.cursor {
+  color: gray;
+  font-size: 48px;
+  opacity: 0.5;
 }
 
 .judgement {

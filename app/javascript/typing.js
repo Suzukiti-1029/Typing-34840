@@ -22,7 +22,7 @@ function key_down (e) {
     if (e.code == 'Backspace' || e.code == 'Delete') {
       inputWord.innerHTML = inputWord.innerHTML.slice(0, -1)
     }
-    if (e.code.includes('Key')) {
+    if (e.code.includes('Key') || e.code == 'Space') {
       inputWord.innerHTML += e.key
     }
     if (e.code == 'Enter') {
@@ -84,13 +84,15 @@ function main () {
         <p class="count_number">
           Question <span id="question_count">1</span>
         </p>
-        <p class="question_number" id="question_number">34</p>
-        <p class="question_english_word" id="question_english_word">English</p>
-        <p class="question_japanese_word" id="question_japanese_word">日本語</p>
+        <p class="question_number" id="question_number"></p>
+        <p class="question_english_word" id="question_english_word"></p>
+        <p class="question_japanese_word" id="question_japanese_word"></p>
       `
       inputForm.innerHTML = `
         <p class="input_helper">↓Your word↓</p>
-        <p class="input_word" id="input_word"></p>
+        <p class="input_word_area">
+          <span class="input_word" id="input_word"></span><span class="cursor">|</span>
+        </p>
         <p class="judgement" id="judgement"></p>
       `
       if (tmr <= 0) {
