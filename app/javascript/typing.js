@@ -3,6 +3,7 @@ let score = 0
 let index = 1
 let tmr = 1
 let sum_length = 0
+let coff = true
 
 function key_down_space_escape_only (e) {
   if (index == 1 || index == 4) {
@@ -21,11 +22,13 @@ function key_down (e) {
     const inputWord = document.getElementById('input_word');
     if (e.code == 'Backspace' || e.code == 'Delete') {
       inputWord.innerHTML = inputWord.innerHTML.slice(0, -1)
+      coff = true
     }
     if (e.code.includes('Key') || e.code == 'Space') {
       inputWord.innerHTML += e.key
+      coff = true
     }
-    if (e.code == 'Enter') {
+    if (e.code == 'Enter' && coff) {
       if (questionEnglishWord.innerHTML == inputWord.innerHTML) {
         score += questionEnglishWord.innerHTML.length * 10
         sum_length += questionEnglishWord.innerHTML.length
@@ -44,9 +47,16 @@ function set_text (judge=true) {
   const questionCount = document.getElementById('question_count');
   const inputWord = document.getElementById('input_word');
   const yourScore = document.getElementById('your_score');
-  if (judge) {
-    questionCount.innerHTML = count
-    inputWord.innerHTML = ''
+  const judgement = document.getElementById('judgement');
+  if (index == 3) {
+    if (judge) {
+      questionCount.innerHTML = count
+      inputWord.innerHTML = ''
+    } else {
+      judgement.innerHTML = 'Wrong! score -20!'
+      setTimeout(() => {judgement.innerHTML = ''}, 500);
+      coff = false
+    }
   }
   yourScore.innerHTML = score
 }
@@ -78,7 +88,7 @@ function main () {
       window.addEventListener('keydown', key_down_space_escape_only);
     } else if (index == 2) {
       tmr -= 0.1;
-      set_text(false)
+      set_text()
       yourRemainingTime.innerHTML = tmr.toFixed(0);
       questionSpace.innerHTML = `
         <p class="count_number">
