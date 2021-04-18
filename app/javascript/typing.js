@@ -4,47 +4,51 @@ let index = 1
 let tmr = 1
 let sum_length = 0
 
-function key_down (e) {
-  e.preventDefault();
-  const questionEnglishWord = document.getElementById('question_english_word');
-  const inputWord = document.getElementById('input_word');
-
-  if (e.code == 'Backspace' || e.code == 'Delete') {
-    inputWord.innerHTML = inputWord.innerHTML.slice(0, -1)
-  }
-  if (e.code.includes('Key')) {
-    inputWord.innerHTML += e.key
-  }
-  if (e.code == 'Enter') {
-    if (questionEnglishWord.innerHTML == inputWord.innerHTML) {
-      score += questionEnglishWord.innerHTML.length * 10
-      sum_length += questionEnglishWord.innerHTML.length
-      count += 1
-      set_text()
-    } else {
-      score -= 20
-      const yourScore = document.getElementById('your_score');
-      yourScore.innerHTML = score
+function key_down_space_escape_only (e) {
+  if (index == 1 || index == 4) {
+    if (e.code == 'Space' || e.code == 'Escape') {
+      index = 2
+      score = 0
+      tmr = 3.5
     }
   }
 }
 
-function key_down_space_escape_only (e) {
-  e.preventDefault();
-  if (e.code == 'Space' || e.code == 'Escape') {
-    index = 2
-    tmr = 3.5
+function key_down (e) {
+  if (index == 3) {
+    e.preventDefault();
+    const questionEnglishWord = document.getElementById('question_english_word');
+    const inputWord = document.getElementById('input_word');
+    if (e.code == 'Backspace' || e.code == 'Delete') {
+      inputWord.innerHTML = inputWord.innerHTML.slice(0, -1)
+    }
+    if (e.code.includes('Key')) {
+      inputWord.innerHTML += e.key
+    }
+    if (e.code == 'Enter') {
+      if (questionEnglishWord.innerHTML == inputWord.innerHTML) {
+        score += questionEnglishWord.innerHTML.length * 10
+        sum_length += questionEnglishWord.innerHTML.length
+        count += 1
+        set_text()
+        set_question()
+      } else {
+        score -= 20
+        set_text(false)
+      }
+    }
   }
 }
 
-function set_text () {
+function set_text (judge=true) {
   const questionCount = document.getElementById('question_count');
   const inputWord = document.getElementById('input_word');
   const yourScore = document.getElementById('your_score');
-  inputWord.innerHTML = ''
-  questionCount.innerHTML = count
+  if (judge) {
+    questionCount.innerHTML = count
+    inputWord.innerHTML = ''
+  }
   yourScore.innerHTML = score
-  set_question()
 }
 
 function set_question () {
@@ -56,17 +60,13 @@ function set_question () {
     const questionNumber = document.getElementById('question_number');
     const questionEnglishWord = document.getElementById('question_english_word');
     const questionJapaneseWord = document.getElementById('question_japanese_word');
-    const newNumber = XHR.response.number;
-    const newEnglishWord = XHR.response.english_word;
-    const newJapaneseWord = XHR.response.japanese_word;
-    questionNumber.innerHTML = newNumber;
-    questionEnglishWord.innerHTML = newEnglishWord;
-    questionJapaneseWord.innerHTML = newJapaneseWord;
+    questionNumber.innerHTML = XHR.response.number;
+    questionEnglishWord.innerHTML = XHR.response.english_word;
+    questionJapaneseWord.innerHTML = XHR.response.japanese_word;
   }
 }
 
 function key_up (e) {
-  e.preventDefault();
 }
 
 function main () {
@@ -78,6 +78,7 @@ function main () {
       window.addEventListener('keydown', key_down_space_escape_only);
     } else if (index == 2) {
       tmr -= 0.1;
+      set_text(false)
       yourRemainingTime.innerHTML = tmr.toFixed(0);
       questionSpace.innerHTML = `
         <p class="count_number">
