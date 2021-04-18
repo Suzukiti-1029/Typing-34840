@@ -3,9 +3,9 @@ class TypingsController < ApplicationController
   end
 
   def new
-    number = rand(1..100)
-    english_word = English.find(number).name
-    japanese_word = Japanese.find(number).name
+    number = rand(1..2027)
+    english_word = QuestionData.find(number).english
+    japanese_word = QuestionData.find(number).japanese
     render json: {
       number: number,
       english_word: english_word,
